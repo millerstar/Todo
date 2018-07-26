@@ -1,17 +1,14 @@
-// Import class so we can use it as dependency injection token in the constructor
 import {Component} from '@angular/core';
 import {Todo} from './todo';
-import {TodoDataService} from "./todo-data.service";
+import {TodoDataService} from './todo-data.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [TodoDataService]
+  providers: []
 })
-
 export class AppComponent {
-  title = 'app works!';
 
   newTodo: Todo = new Todo();
 
@@ -23,15 +20,16 @@ export class AppComponent {
     this.newTodo = new Todo();
   }
 
-  toggleTodoComplete(todo) {
+  toggleTodoComplete(todo: Todo) {
     this.todoDataService.toggleTodoComplete(todo);
   }
 
-  removeTodo(todo) {
+  removeTodo(todo: Todo) {
     this.todoDataService.deleteTodoById(todo.id);
   }
 
   get todos() {
     return this.todoDataService.getAllTodos();
   }
+
 }
